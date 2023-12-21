@@ -7,9 +7,8 @@
     "start": "nodemon server",
     "client": "cd client && npm start",
     "install-client": "cd client && npm install",
-    "heroku-postbuild": "npm run install-client && npm run build",
-    "build": "cd client && npm run build"
-  },
+    "heroku-postbuild": "npm run install-client && npm run build"
+    },
 
   "keywords": [],
   "author": "",
