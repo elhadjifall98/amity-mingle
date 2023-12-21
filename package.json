@@ -10,9 +10,7 @@
     "heroku-postbuild": "npm run install-client && npm run build",
     "build": "cd client && npm run build"
   },
-  "engines": {
-    "node": "20.7.0"
-  },
+
   "keywords": [],
   "author": "",
   "license": "ISC",
