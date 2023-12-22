@@ -11,8 +11,15 @@ const createToken = (id) => {
 };
 
 const handleCookie = (res, token) => {
-  res.cookie('jwt', token, { httpOnly: true, maxAge });
+  res.cookie('jwt', token, {
+    httpOnly: true,
+    maxAge,
+    domain: '.herokuapp.com', // Utilisez le domaine de votre backend
+    path: '/', // Assurez-vous que le chemin est correct pour votre application
+  });
 };
+
+
 
 module.exports.signUp = async (req, res) => {
   try {

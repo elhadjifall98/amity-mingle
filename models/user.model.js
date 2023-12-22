@@ -46,8 +46,25 @@ const userSchema = new mongoose.Schema(
   },
   {
     timestamps: true,
+  },
+  {
+    authTokens: [{
+      authToken: {
+        type: String,
+        require:true
+      }
+    }]
   }
 );
+
+//generation du token
+userSchema.methods.generateAuthTokenAndSaveUser = async function () {
+  const authToken = jwt.sign({ _id: this._id.toString() }, 'foo');
+  this.authTokens.push({ authToken });
+  await this.save();
+  return authToken;
+};
+
 
 // play function before save into display: 'block',
 userSchema.pre("save", async function(next) {
