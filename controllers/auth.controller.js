@@ -16,6 +16,8 @@ const handleCookie = (res, token) => {
     maxAge,
     domain: '.herokuapp.com', // Utilisez le domaine de votre backend
     path: '/', // Assurez-vous que le chemin est correct pour votre application
+    secure: true, // Utilisez true pour les connexions HTTPS
+    sameSite: 'None',
   });
 };
 
