@@ -18,6 +18,8 @@ module.exports.signUp = async (req, res) => {
   try {
     const { pseudo, email, password } = req.body;
     const user = await UserModel.create({ pseudo, email, password });
+    const token = createToken(user._id);
+    handleCookie(res, token);
     res.status(201).json({ user: user._id });
   } catch (err) {
     const errors = signUpErrors(err);

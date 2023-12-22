@@ -13,10 +13,11 @@ const app = express();
 const corsOptions = {
   origin: process.env.CLIENT_URL,
   credentials: true,
-  allowedHeaders: ['Content-Type', 'Authorization'], // Ajout de l'en-tête Authorization
-  exposedHeaders: ['sessionId'], // Si nécessaire
-  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-  preflightContinue: false,
+  'allowedHeaders': ['sessionId', 'Content-Type'],
+  'exposedHeaders': ['sessionId'],
+  'methods': 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  'preflightContinue': false,
+  'sameSite': 'None', // Vous pouvez ajuster en fonction de vos besoins
 };
 
 // Utilisez corsOptions dans votre middleware CORS
