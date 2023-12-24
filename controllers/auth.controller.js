@@ -12,19 +12,16 @@ const createToken = (id) => {
 
 const handleCookie = (res, token) => {
   res.cookie('jwt', token, {
-    httpOnly: true,
-    maxAge,
-    domain: 'quiet-oasis-36311-7ecc0ef1ffe1.herokuapp.com',
-    path: '/',
-    secure: true,
-    sameSite: 'None',
+    // httpOnly: true,
+    // maxAge,
+    // domain: 'quiet-oasis-36311-7ecc0ef1ffe1.herokuapp.com',
+    // path: '/',
+    // secure: true,
+    // sameSite: 'None',
   });
 };
 
-
-
-
-module.exports.signUp = async (req, res) => {
+const signUp = async (req, res) => {
   try {
     const { pseudo, email, password } = req.body;
     const user = await UserModel.create({ pseudo, email, password });
@@ -37,7 +34,7 @@ module.exports.signUp = async (req, res) => {
   }
 };
 
-module.exports.signIn = async (req, res) => {
+const signIn = async (req, res) => {
   try {
     const { email, password } = req.body;
     const user = await UserModel.login(email, password);
@@ -50,7 +47,9 @@ module.exports.signIn = async (req, res) => {
   }
 };
 
-module.exports.logout = (req, res) => {
+const logout = (req, res) => {
   res.cookie('jwt', '', { maxAge: 1 });
   res.redirect('/');
 };
+
+module.exports = { signUp, signIn, logout };
