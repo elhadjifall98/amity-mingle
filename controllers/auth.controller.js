@@ -12,12 +12,12 @@ const createToken = (id) => {
 
 const handleCookie = (res, token) => {
   res.cookie('jwt', token, {
-    httpOnly: true,
-    maxAge,
-    domain: 'quiet-oasis-36311-7ecc0ef1ffe1.herokuapp.com',
-    path: '/',
-    secure: true,
-    sameSite: 'None',
+    // httpOnly: true,
+    // maxAge,
+    // domain: 'quiet-oasis-36311-7ecc0ef1ffe1.herokuapp.com',
+    // path: '/',
+    // secure: true,
+    // sameSite: 'None',
   });
 };
 
