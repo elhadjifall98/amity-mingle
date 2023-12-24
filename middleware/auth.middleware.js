@@ -27,7 +27,7 @@ module.exports.requireAuth = (req, res, next) => {
     jwt.verify(token, process.env.TOKEN_SECRET, async (err, decodedToken) => {
       if (err) {
         console.log(err);
-        res.send(200).json('no token')
+        res.status(401).json('no token'); // Utilisez `status` pour définir le code de statut HTTP
       } else {
         console.log(decodedToken.id);
         next();
@@ -35,5 +35,7 @@ module.exports.requireAuth = (req, res, next) => {
     });
   } else {
     console.log('No token');
+    res.status(401).json('no token'); // Vous devriez probablement envoyer une réponse ici aussi
   }
 };
+
