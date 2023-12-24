@@ -14,12 +14,13 @@ const handleCookie = (res, token) => {
   res.cookie('jwt', token, {
     httpOnly: true,
     maxAge,
-    domain: '.herokuapp.com', // Utilisez le domaine de votre backend
-    path: '/', // Assurez-vous que le chemin est correct pour votre application
-    secure: true, // Utilisez true pour les connexions HTTPS
+    domain: 'quiet-oasis-36311-7ecc0ef1ffe1.herokuapp.com',
+    path: '/',
+    secure: true,
     sameSite: 'None',
   });
 };
+
 
 
 
