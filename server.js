@@ -9,6 +9,8 @@ const {checkUser, requireAuth} = require('./middleware/auth.middleware');
 const cors = require('cors');
 
 const app = express();
+app.use(cookieParser());
+
 
 const corsOptions = {
   origin: process.env.CLIENT_URL,
@@ -30,7 +32,7 @@ app.use(cookieParser());
 // jwt
 app.get('*', checkUser);
 app.get('/jwtid', requireAuth, (req, res) => {
-  res.status(200).send(res.locals.user._id)
+  res.status(200).send(res.locals.user ? res.locals.user._id : null);
 });
 
 // routes
