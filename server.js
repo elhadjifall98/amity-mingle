@@ -30,7 +30,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(cookieParser());
 
 // jwt
-app.get('*', checkUser);
+app.all('*', checkUser);
 app.get('/jwtid', requireAuth, (req, res) => {
   res.status(200).send(res.locals.user._id)
 });
