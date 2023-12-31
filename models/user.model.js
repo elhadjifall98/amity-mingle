@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const { isEmail } = require('validator');
 const bcrypt = require('bcrypt');
+// const jwt = require('jsonwebtoken');
 
 const userSchema = new mongoose.Schema(
   {
@@ -42,7 +43,13 @@ const userSchema = new mongoose.Schema(
     },
     likes: {
       type: [String]
-    }
+    },
+    // authTokens: [{
+    //   authToken: {
+    //     type: String,
+    //     required: true
+    //   }
+    // }]
   },
   {
     timestamps: true,
@@ -51,6 +58,12 @@ const userSchema = new mongoose.Schema(
 );
 
 
+// userSchema.methods.generateAuthTokenAndSaveUser = async function () {
+// const authToken = jwt.sign({ _id: this._id.toString() }, 'foo' );
+// this.authTokens.push({ authToken });
+// await this.save();
+// return authToken;
+// }
 
 
 // play function before save into display: 'block',
