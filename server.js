@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+// const WebSocket = require('ws');
 const cookieParser = require('cookie-parser');
 const userRoutes = require('./routes/user.routes');
 const postRoutes = require('./routes/post.routes');
@@ -7,6 +8,7 @@ require('dotenv').config({path: './config/.env'});
 require('./config/db');
 const {checkUser, requireAuth} = require('./middleware/auth.middleware');
 const cors = require('cors');
+
 
 const app = express();
 app.use(cookieParser());
@@ -37,6 +39,23 @@ app.get('/jwtid', requireAuth, (req, res) => res.status(200).send(res.locals.use
 // routes
 app.use('/api/user', userRoutes);
 app.use('/api/post', postRoutes);
+
+// const server = http.createServer(app);
+// const wss = new WebSocket.Server({ server });
+
+// wss.on('connection', (ws) => {
+//   console.log('WebSocket connection established');
+
+//   // Gérer les messages reçus
+//   ws.on('message', (message) => {
+//     console.log(`Received message: ${message}`);
+
+//     // Vous pouvez gérer les messages ici et envoyer des réponses, etc.
+//   });
+
+//   // Envoyer un message au client
+//   ws.send('Hello, WebSocket client!');
+// });
 
 // server
 app.listen(process.env.PORT, () => {

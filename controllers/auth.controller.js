@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 const UserModel = require('../models/user.model');
-const bcrypt = require('bcrypt');
+// const bcrypt = require('bcrypt');
 
 const maxAge = 3 * 24 * 60 * 60 * 1000; // 3 days
 
@@ -29,7 +29,11 @@ module.exports.signIn = async (req, res) => {
   try {
     const user = await UserModel.login(email, password);
     const token = createToken(user._id);
-    res.cookie('jwt', token, { httpOnly: true, maxAge: maxAge });
+    
+    // Utilisez le domaine spécifié dans le fichier .env
+    const clientUrl = process.env.CLIENT_URL;
+    res.cookie('jwt', token, { httpOnly: true, maxAge: maxAge, domain: clientUrl });
+
     res.status(200).json({ user: user._id });
   } catch (err) {
     res.status(400).json({ errors: err.message });
