@@ -29,11 +29,7 @@ module.exports.signIn = async (req, res) => {
   try {
     const user = await UserModel.login(email, password);
     const token = createToken(user._id);
-    
-    // Utilisez le domaine spécifié dans le fichier .env
-    const clientUrl = process.env.CLIENT_URL;
-    res.cookie('jwt', token, { httpOnly: true, maxAge: maxAge, domain: clientUrl });
-
+    res.cookie('jwt', token, { httpOnly: true, maxAge: maxAge });
     res.status(200).json({ user: user._id });
   } catch (err) {
     res.status(400).json({ errors: err.message });
